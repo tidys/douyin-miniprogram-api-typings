@@ -1,0 +1,21 @@
+{
+    "name": "douyin-miniprogram-api-typings",
+    "version": "1.0.0",
+    "main": "./typings/index.d.ts",
+    "types": "./typings/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tidys/douyin-miniprogram-api-typings.git"
+    },
+    "author": "xu_yanfeng<xu_yanfeng@126.com>",
+    "license": "MIT",
+    "description": "douyin miniprogram api typings",
+    "homepage": "",
+    "files": [
+        "readme.md",
+        "types/"
+    ]
+}
