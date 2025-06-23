@@ -64,7 +64,11 @@ declare namespace DouyinMinigame {
     /**需要确认的入口场景，scene的合法值:sidebar */
     scene: string;
     /**成功回调 @param res.isExist 为true表示支持 */
-    success?: (res: { isExist: boolean; errMsg: string }) => void;
+    success?: (res: {
+      /**入口场景是否存在 */
+      isExist: boolean;
+      errMsg: string;
+    }) => void;
     /**失败回调 */
     fail?: errCB;
     /**完成回调 */
@@ -1323,7 +1327,73 @@ declare namespace DouyinMinigame {
       launch_from: string;
     };
   };
-
+  /**场景值 ID */
+  enum Scene {
+    /**抖音个人主页侧边栏 */
+    homepageSidebarCard = "021001",
+    /**全局扫一扫 */
+    globalScan = "021002",
+    /**抖音其他小游戏跳转 */
+    dyOtherMiniGameJump = "021009",
+    /**小程序返回小程序 */
+    miniProgramReturn = "021010",
+    /**抖音小游戏中心 */
+    dyMiniGameCenter = "021012",
+    /**抖音视频发布器 */
+    dyVideoPublisher = "021014",
+    /**桌面图标 */
+    desktopIcon = "021020",
+    /**抖音个人页我的小程序（个人简介下方）/ 抖音首页侧边栏 */
+    dyHomepageMyMiniProgram = "021036",
+    /**抖音ipad版 */
+    dyIpad = "021042",
+    /**抖音小游戏中心 */
+    dyMiniGameCenterIpad = "021043",
+    /**金币游戏中心 */
+    dyCoinGameCenter = "021045",
+    /**抖音金币任务页 */
+    dyCoinTask = "021046",
+    /**抖音游戏搜索 */
+    dyGameSearch = "022001",
+    /**抖音视频锚点 */
+    dyVideoAnchor = "023001",
+    /**抖音视频评论页锚点 */
+    dyVideoCommentAnchor = "023002",
+    /**企业号主页或个人主页 */
+    dyEnterpriseHomepage = "023003",
+    /**抖音直播间（仅自然转化）*/
+    dyLiveRoom = "023010",
+    /**抖音搜索结果视频锚点 */
+    dySearchResultVideoAnchor = "023023",
+    /**推荐页小游戏异化卡 */
+    dyRecommendPageGameCard = "023040",
+    /**抖音推荐流直出游戏 */
+    dyRecommendStreamGame = "023041",
+    /**私信分享 */
+    dyDirectMessageShare = "024001",
+    /**微信对话 */
+    wechatDialogue = "024002",
+    /**微信朋友圈 */
+    wechatMoments = "024003",
+    /**QQ 对话 */
+    qqDialogue = "024004",
+    /**Qzone */
+    qzone = "024005",
+    /**群公告 */
+    groupAnnouncement = "024010",
+    /**抖音广告投放 */
+    dyAdDelivery = "025001",
+    /**橙子建站 h5 跳转 */
+    orangeSiteH5Jump = "025002",
+    /**banner */
+    banner = "026001",
+    /**话题 */
+    topic = "026002",
+    /**push */
+    push = "026003",
+    /**抖音订阅消息 */
+    dySubscribeMessage = "026004",
+  }
   /**
    * - 小游戏回到前台的参数
    * - launch_from 参数说明
@@ -1335,7 +1405,7 @@ declare namespace DouyinMinigame {
     /**启动参数 */
     query: { [key: string]: any };
     /**启动场景值。查看方式：1. [抖音开放平台-场景值](https://partner.open-douyin.com/docs/resource/zh-CN/mini-game/develop/framework/scene-value/)；2.抖音开发者工具中，普通编译 -> 添加编译模式 -> 进入场景 */
-    scene: string;
+    scene: Scene;
     /**来源信息，从另一个小程序进入小程序时返回，否则返回空对象 {} */
     refererInfo: {
       /**来源小程序 appId */

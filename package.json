@@ -1,10 +1,10 @@
 {
     "name": "douyin-miniprogram-api-typings",
-    "version": "1.0.0",
-    "main": "./typings/index.d.ts",
-    "types": "./typings/index.d.ts",
+    "version": "1.0.1",
+    "main": "./types/index.d.ts",
+    "types": "./types/index.d.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "yalc-push": "yalc push"
     },
     "repository": {
         "type": "git",
