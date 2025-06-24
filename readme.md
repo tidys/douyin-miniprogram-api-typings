@@ -21,3 +21,15 @@ tt.onShow(()=>{
 
 ```
 
+## 个人插件作品
+
+- [cc-inpector chrome免费插件，查看游戏节点树](https://juejin.cn/post/7463836172559024179)
+- [位图插件](https://store.cocos.com/app/detail/1975)
+- [热更新插件](https://store.cocos.com/app/detail/1898)
+- [粒子编辑插件](https://store.cocos.com/app/detail/2117)
+- [引用查找插件](https://store.cocos.com/app/detail/7391)
+- [plist等多种格式拆图插件](https://store.cocos.com/app/detail/6060)
+- [多语言自动翻译插件](https://store.cocos.com/app/detail/6828)
+- [cocos mcp](https://store.cocos.com/app/detail/7458)
+- [资源混淆插件](https://store.cocos.com/app/detail/5205)
+- [Excel转JSON插件](https://store.cocos.com/app/detail/7022)
