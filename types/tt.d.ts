@@ -1451,7 +1451,7 @@ declare namespace DouyinMinigame {
   /**
    * - ## 激励视频广告实例
    * - Tip：全局只能有一个视频广告实例，重复创建没有用
-   * - 开发者使用 [tt.createRewardedVideoAd](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/ads/tt-create-rewarded-video-ad) 创建激励视频广告时，会存在各种不合理情况，导致广告价值和收入降低。
+   * - 开发者使用 [tt.createRewardedVideoAd](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/open-ability/ad/incentive-ads) 创建激励视频广告时，会存在各种不合理情况，导致广告价值和收入降低。
    * - ## 为了帮助开发者提高广告收入，针对激励视频广告做些 [注意事项说明](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/ads/rewarded-video-ad/videoAdNotice) 👈👈 点击查看
    */
   interface RewardedVideoAd {
@@ -1462,7 +1462,7 @@ declare namespace DouyinMinigame {
      * - 当广告组件正常获取素材时，该 Promise 对象会是一个 resolved Promise。
      * - 当广告组件发生错误时，会是一个 rejected Promise，参数与 error 事件监听器获得的参数相同。
      */
-    onShow: () => Promise<void>;
+    show: () => Promise<void>;
     /**
      * - ## 通过 load 方法主动预加载广告内容。
      * - 基础库 1.3.0 开始支持本方法，这是一个同步方法。
@@ -1507,10 +1507,19 @@ declare namespace DouyinMinigame {
      * - count 是新增加字段，值代表观看广告的次数，开发者能通过 count 来判断实际观看的次数。
      * - 建议开发者在返回 count 的情况下，统一使用该字段判断广告是否观看完成。
      * @param callback 是一个回调函数，接收 object 类型的参数
-     * @param res.isEnded 用户是否完整观看了视频
-     * @param res.count 用户完整观看了几次视频
      */
-    onClose: (callback: (res: { isEnded: boolean; count: number }) => void) => void;
+    onClose: (
+      callback: (res: {
+        /**
+         * 用户是否完整观看了视频
+         */
+        isEnded: boolean;
+        /**
+         * 用户完整观看了几次视频
+         */
+        count: number;
+      }) => void
+    ) => void;
     /**
      * - ## 解除绑定 close 事件的监听器。
      * - 基础库 1.3.0 开始支持本方法，这是一个同步方法。
