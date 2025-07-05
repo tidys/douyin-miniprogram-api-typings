@@ -1,6 +1,6 @@
 ## 抖音小游戏API
 
-代码整理来自[文人](https://gitee.com/showsmile/ttapidts)，已经发布到了[npm]()上，可能存在错误，欢迎PR。
+代码整理来自[文人](https://gitee.com/showsmile/ttapidts)，已经发布到了[npm](https://www.npmjs.com/package/douyin-miniprogram-api-typings)上，可能存在错误，欢迎PR。
 
 
 ## 使用教程
@@ -22,7 +22,7 @@ tt.onShow(()=>{
 ```
 
 ## 个人插件作品
-
+- [抖音侧边栏插件](https://store.cocos.com/app/detail/7875)
 - [cc-inpector chrome免费插件，查看游戏节点树](https://juejin.cn/post/7463836172559024179)
 - [位图插件](https://store.cocos.com/app/detail/1975)
 - [热更新插件](https://store.cocos.com/app/detail/1898)
