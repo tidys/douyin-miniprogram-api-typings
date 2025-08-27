@@ -2090,7 +2090,7 @@ declare namespace DouyinMinigame {
      * @param data.key 配置中的字段名
      * @param data.value 上报的数据
      */
-    reportAnalytics: (event: string, data: { key: string; value: number | string | boolean }) => void;
+    reportAnalytics: (event: string, data: Record<string, number | string>) => void;
 
     /**
      * - ## 调起客户端订阅消息界面，返回用户订阅消息的操作结果。
