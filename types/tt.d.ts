@@ -506,16 +506,16 @@ declare namespace DouyinMinigame {
   type storeFeedDataObj = {
     /**自定义补充字段 */
     extra?: string;
-    /**订阅的场景 ID ，在`性能分析/启动场景/启动场景配置`里面寻找该值。*/
-    scene: number;
+    /**订阅的场景 ID ，可选值为：1离线收益场景，2体力恢复场景，3重要事件掉落*/
+    scene: 1 | 2 | 3;
     /**满足运算公式后，对应直玩场景是否就绪。0：未就绪， 1：就绪 */
-    status: number;
+    status: 0 | 1;
     /**自定义文案的 contentID，contentID 在后台申请开通直玩能力后可获取 */
     contentID: string;
     /**运算公式的左值，当前只支持"timeStampMs"，即毫秒级时间戳 */
-    leftValue: string;
+    leftValue: 'timeStampMs';
     /**运算符，可选值有: =,>,>=,<,<=,!= */
-    operator: string;
+    operator: '=' | '>' | '>=' | '<' | '<=' | '!=';
     /**运算公式的右值 */
     rightValue: string;
     /**成功回调 */
@@ -2152,7 +2152,7 @@ declare namespace DouyinMinigame {
      */
     checkFeedSubscribeStatus: (obj: {
       /**订阅的场景 ID（非全场景下必传）可选值为：1离线收益场景，2体力恢复场景，3重要事件掉落 */
-      scene?: number;
+      scene?: 1 | 2 | 3;
       /**是否为全场景订阅 */
       allScene?: boolean;
       /**订阅 Feed 流的类型，目前只支持传 'play' */
@@ -2171,7 +2171,7 @@ declare namespace DouyinMinigame {
      */
     requestFeedSubscribe: (obj: {
       /**订阅的场景 ID（非全场景下必传）可选值为：1离线收益场景，2体力恢复场景，3重要事件掉落 */
-      scene?: number;
+      scene?: 1 | 2 | 3;
       /**自定义文案 contentID 数组（非全场景下必传），contentID 在后台申请开通直玩能力后可获取 */
       contentIDs?: string[];
       /**是否为全场景订阅 */
@@ -2207,7 +2207,7 @@ declare namespace DouyinMinigame {
      */
     getFeedData: (obj: {
       /**订阅的场景 ID（非全场景下必传）可选值为：1离线收益场景，2体力恢复场景，3重要事件掉落 */
-      scene: number;
+      scene: 1 | 2 | 3;
       /**自定义文案的 contentID，contentID 在后台申请开通直玩能力后可获取 */
       contentID: string;
       success: (obj: {
