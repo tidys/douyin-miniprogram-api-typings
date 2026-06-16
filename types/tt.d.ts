@@ -367,8 +367,18 @@ declare namespace DouyinMinigame {
 
   /**检查添加桌面图标回调 */
   type shortcutObj = {
-    /**成功回调 @param res.status.exist 是否已经添加了桌面快捷方式 @param res.status.needUpdate 是否需要更新快捷方式 */
-    success?: (res: { status: { exist: boolean; needUpdate: boolean }; errMsg: string }) => void;
+    /**成功回调 */
+    success?: (res: {
+      /** 桌面快捷方式状态 */
+      status: {
+        /**是否已经添加了桌面快捷方式 */
+        exist: boolean;
+        /**是否需要更新快捷方式 */
+        needUpdate: boolean;
+      };
+      /**"checkShortcut:fail " + 错误详情 */
+      errMsg: string;
+    }) => void;
     /**失败回调 */
     fail?: errCB;
     /**完成回调 */
@@ -493,7 +503,28 @@ declare namespace DouyinMinigame {
 
   /**上传排行榜数据参数(开放数据域) */
   type setImRankDataInOpenContextObj = setImRankDataObj;
-
+  type storeFeedDataObj = {
+    /**自定义补充字段 */
+    extra?: string;
+    /**订阅的场景 ID ，在`性能分析/启动场景/启动场景配置`里面寻找该值。*/
+    scene: number;
+    /**满足运算公式后，对应直玩场景是否就绪。0：未就绪， 1：就绪 */
+    status: number;
+    /**自定义文案的 contentID，contentID 在后台申请开通直玩能力后可获取 */
+    contentID: string;
+    /**运算公式的左值，当前只支持"timeStampMs"，即毫秒级时间戳 */
+    leftValue: string;
+    /**运算符，可选值有: =,>,>=,<,<=,!= */
+    operator: string;
+    /**运算公式的右值 */
+    rightValue: string;
+    /**成功回调 */
+    success?: (res: { errMsg: string | "storeFeedData:ok" }) => void;
+    /**失败回调 */
+    fail?: errCB;
+    /**完成回调 */
+    complete?: errCB;
+  }
   /**自定义启动场景数据上报接口参数 */
   type reportSceneObj = {
     /**​场景ID，登录抖音开放平台，进入「数据」-「性能分析」-「启动监控」-「启动场景配置」模块，添加游戏的自定义启动场景。 游戏每次启动只可以上报一次​ */
@@ -2079,6 +2110,14 @@ declare namespace DouyinMinigame {
     reportScene: (obj: reportSceneObj) => void;
 
     /**
+     * - ## [存储游戏是否直玩就绪状态。](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/feed-subscribe/tt-store-feed-data)
+     * - 基础库 3.67.0 开始支持本方法，这是一个异步方法。
+     * - 前提条件：在使用前需前往开发者后台，在运营能力 - 推荐流直出能力中申请开通，并获取对应场景值 scene，素材 contentID
+     * - 注意事项：当前接口面向无server小游戏，如果在开通直玩能力过程中配置了 OpenAPI，则无需调用此接口存储直玩状态
+     * 
+     */
+    storeFeedData: (obj: storeFeedDataObj) => void;
+    /**
      * - ## 自定义分析数据上报接口.
      * - 调用后，会将数据上报到[抖音开放平台](https://developer.open-douyin.com/).
      * - 基础库 1.8.0 开始支持本方法，这是一个同步方法。
@@ -2251,7 +2290,6 @@ declare namespace DouyinMinigame {
      * - 不传入callback参数时，会移除所有监听函数。
      */
     offNetworkWeakChange: (callback?: () => void) => void;
-    3;
 
     /**
      * - ## 设置是否保持屏幕常亮状态。
