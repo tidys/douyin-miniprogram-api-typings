@@ -2144,6 +2144,83 @@ declare namespace DouyinMinigame {
     requestSubscribeMessage: (obj: requestSubscribeMessageObj) => void;
 
     /**
+     * - ## [查询用户直玩订阅的授权情况](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/feed-subscribe/check-feed-subscribe-status)
+     * - 使用限制：
+     *  1. 直玩能力只支持抖音平台。
+     *  2. 必须在调用 tt.login 后才能调用本接口。
+     *  3. 本接口存在频控限制，需要注意调用场景和频率。
+     */
+    checkFeedSubscribeStatus: (obj: {
+      /**订阅的场景 ID（非全场景下必传）可选值为：1离线收益场景，2体力恢复场景，3重要事件掉落 */
+      scene?: number;
+      /**是否为全场景订阅 */
+      allScene?: boolean;
+      /**订阅 Feed 流的类型，目前只支持传 'play' */
+      type: 'play';
+      success?: (obj: {
+        /**用户的订阅状态（true为已经订阅，false为用户未订阅）*/
+        status: boolean,
+        errMsg: string | "checkFeedSubscribeStatus:ok"
+      }) => void;
+      fail?: (obj: { errMsg: string }) => void;
+      complete?: () => void;
+    }) => void;
+
+    /**
+     * - ## [向用户请求授权，允许游戏在满足一定的条件后出现在 Feed 流中](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/feed-subscribe/request-feed-subscribe)
+     */
+    requestFeedSubscribe: (obj: {
+      /**订阅的场景 ID（非全场景下必传）可选值为：1离线收益场景，2体力恢复场景，3重要事件掉落 */
+      scene?: number;
+      /**自定义文案 contentID 数组（非全场景下必传），contentID 在后台申请开通直玩能力后可获取 */
+      contentIDs?: string[];
+      /**是否为全场景订阅 */
+      allScene?: boolean;
+      /**订阅 Feed 流的类型，目前只支持传 'play' */
+      type: 'play';
+      success?: (obj: {
+        /**用户的订阅结果（true 为成功，false 为订阅失败，具体原因看 errMsg）*/
+        status: boolean,
+        errMsg: string | "requestFeedSubscribe:ok"
+      }) => void;
+      fail?: (obj: { errMsg: string }) => void;
+      complete?: () => void;
+    }) => void;
+    /**
+     * - ## [监听 Feed 流进入/退出小游戏事件。](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/feed-subscribe/tt-feed-status-change)
+     * - 使用限制：使用场景仅限推荐流直玩游戏场景，只支持抖音平台
+     */
+    onFeedStatusChange: (cb: (obj: {
+      /**事件类型 */
+      type: string | "feedEnter" | "feedExit";
+    }) => void) => void;
+    /**
+     * - ## [取消监听 Feed 流进入/退出小游戏事件。](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/feed-subscribe/off-feed-status-change)
+     * - 使用限制：使用场景仅限推荐流直玩游戏场景，只支持抖音平台
+     */
+    offFeedStatusChange: (cb: (obj: {
+      /**事件类型 */
+      type: string | "feedEnter" | "feedExit";
+    }) => void) => void;
+    /**
+     * - ## [获取游戏是否直玩就绪状态数据。](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/feed-subscribe/tt-get-feed-data)
+     */
+    getFeedData: (obj: {
+      /**订阅的场景 ID（非全场景下必传）可选值为：1离线收益场景，2体力恢复场景，3重要事件掉落 */
+      scene: number;
+      /**自定义文案的 contentID，contentID 在后台申请开通直玩能力后可获取 */
+      contentID: string;
+      success: (obj: {
+        errMsg: string | "getFeedData:ok";
+        /**当前直玩状态是否就绪 */
+        status: number;
+        /**	补充字段 */
+        extra: string;
+      }) => void;
+      fail?: (obj: { errMsg: string }) => void;
+      complete?: () => void;
+    }) => void;
+    /**
      * - ## 判断小游戏的 API、回调、参数、组件等是否在当前版本可用。
      * - 基础库 1.35.0 开始支持本方法，这是一个同步方法。
      * - 不支持 fail 和 complete 回调函数的判断
